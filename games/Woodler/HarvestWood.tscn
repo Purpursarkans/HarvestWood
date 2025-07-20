@@ -1,0 +1,1042 @@
+[gd_scene load_steps=61 format=3 uid="uid://ca8qtea2dvucc"]
+
+[ext_resource type="Texture2D" uid="uid://dr0mlb3j8sdrq" path="res://textures/ CC BY 3.0/snow/tomek/snow7_d.jpg" id="1_fack3"]
+[ext_resource type="Texture2D" uid="uid://c8i1w03clilic" path="res://textures/ CC BY 3.0/snow/tomek/snow7_s.jpg" id="2_4plao"]
+[ext_resource type="Texture2D" uid="uid://bnuvbif50utlh" path="res://textures/ CC BY 3.0/snow/tomek/snow7_h.jpg" id="3_53vlm"]
+[ext_resource type="Texture2D" uid="uid://cbe1a4ambbdd1" path="res://textures/ CC BY 3.0/snow/tomek/snow7_local.jpg" id="4_x46bx"]
+[ext_resource type="Script" uid="uid://bjfm3rc1sonwd" path="res://scripts/player.gd" id="5_3jdc6"]
+[ext_resource type="Texture2D" uid="uid://cmwg6owdj7k2i" path="res://textures/CC0 1.0 Universal/Dark Wood/Holz Dark Seamless.jpg" id="6_jh6kt"]
+[ext_resource type="Script" uid="uid://dhal1lummxvqt" path="res://scripts/color_rect.gd" id="7_n86ka"]
+[ext_resource type="AudioStream" uid="uid://b4jktspbqhy28" path="res://sound/CC BY 3.0/Menu Selection Click/Menu Selection Click.wav" id="8_fakw2"]
+[ext_resource type="Script" uid="uid://7wahimxao25q" path="res://scripts/gui.gd" id="9_w6b45"]
+[ext_resource type="Texture2D" uid="uid://cg4u2aodkvqmy" path="res://icon.svg" id="10_t6yhj"]
+[ext_resource type="Script" uid="uid://dq7gl4tmcn7rp" path="res://scripts/eye.gd" id="11_4xddr"]
+[ext_resource type="PackedScene" uid="uid://ss34e3i1oghs" path="res://scenes/woodLogCampfire.tscn" id="12_21mcs"]
+[ext_resource type="Script" uid="uid://tecgwyk3a3ot" path="res://scripts/campfire_static_body_3d.gd" id="13_6cp6b"]
+[ext_resource type="Script" uid="uid://dgbn7fcs5g5hu" path="res://scripts/fuel_bar.gd" id="14_hspbi"]
+[ext_resource type="Script" uid="uid://paws6i0pka5v" path="res://scripts/wood_spawner.gd" id="15_cwkjc"]
+[ext_resource type="PackedScene" uid="uid://bx7k7jxwisjld" path="res://scenes/wood_log.tscn" id="16_bsemo"]
+[ext_resource type="Script" uid="uid://bngxdphr26n3k" path="res://scripts/wood_log.gd" id="17_ptukg"]
+[ext_resource type="Script" uid="uid://bf3ybt6166boj" path="res://scripts/exit_static.gd" id="18_k4la6"]
+[ext_resource type="Script" uid="uid://b0keqlcdfbidp" path="res://scripts/start_static.gd" id="19_py3ox"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_100vi"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_twdf2"]
+sky_material = SubResource("ProceduralSkyMaterial_100vi")
+
+[sub_resource type="Environment" id="Environment_i42k1"]
+background_mode = 2
+sky = SubResource("Sky_twdf2")
+tonemap_mode = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_83ijf"]
+albedo_color = Color(0.462291, 0.462291, 0.462291, 1)
+albedo_texture = ExtResource("1_fack3")
+emission_enabled = true
+emission_texture = ExtResource("2_4plao")
+normal_enabled = true
+normal_texture = ExtResource("4_x46bx")
+heightmap_enabled = true
+heightmap_texture = ExtResource("3_53vlm")
+uv1_scale = Vector3(0.85, 0.85, 0.85)
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_dwunf"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_100vi"]
+data = PackedVector3Array(1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0, -1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7sg2u"]
+albedo_texture = ExtResource("6_jh6kt")
+
+[sub_resource type="Curve" id="Curve_xqen3"]
+_data = [Vector2(0, 0.876405), 0.0, 0.0, 0, 0, Vector2(0.0651163, 1), 0.0, 0.0, 0, 0, Vector2(0.553488, 1), 0.0, 0.0, 0, 0, Vector2(0.897674, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.853933), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7mjhk"]
+albedo_color = Color(0.34989, 0.159557, 0.00142558, 1)
+
+[sub_resource type="TubeTrailMesh" id="TubeTrailMesh_pc53x"]
+material = SubResource("StandardMaterial3D_7mjhk")
+radial_steps = 6
+curve = SubResource("Curve_xqen3")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_cejma"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_fefcm"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_i42k1"]
+
+[sub_resource type="Curve" id="Curve_s1ey0"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.54386, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_xqen3"]
+curve = SubResource("Curve_s1ey0")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_cecup"]
+lifetime_randomness = 1.0
+emission_shape = 1
+emission_sphere_radius = 1.0
+angle_min = 1.07288e-05
+angle_max = 180.0
+direction = Vector3(0, 1, 0)
+spread = 80.0
+initial_velocity_max = 0.3
+gravity = Vector3(0, 0.5, 0)
+scale_min = 0.3
+scale_curve = SubResource("CurveTexture_xqen3")
+turbulence_noise_scale = 6.509
+turbulence_influence_min = 0.069
+turbulence_influence_max = 0.083
+turbulence_initial_displacement_min = 1.49012e-06
+turbulence_initial_displacement_max = 1.49012e-06
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s1ey0"]
+albedo_color = Color(0.521141, 0.521141, 0.521141, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_r2bax"]
+material = SubResource("StandardMaterial3D_s1ey0")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xqen3"]
+albedo_color = Color(0.870313, 0.312131, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_cecup"]
+material = SubResource("StandardMaterial3D_xqen3")
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_s1ey0"]
+data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pc53x"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_7sg2u"]
+material = SubResource("StandardMaterial3D_pc53x")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_33vyi"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_y62wd"]
+material = SubResource("StandardMaterial3D_33vyi")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eo0lw"]
+albedo_color = Color(0, 0.558147, 0.374287, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_ntjly"]
+material = SubResource("StandardMaterial3D_eo0lw")
+
+[sub_resource type="Animation" id="Animation_yc65k"]
+resource_name = "FuelLoad"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FuelLoad:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0.386, 0.242), Vector3(1.552, 0.386, 0.242)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FuelLoad:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.776, 0, -0.002), Vector3(0, 0, -0.002)]
+}
+
+[sub_resource type="Animation" id="Animation_33vyi"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FuelLoad:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.386, 0.242)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FuelLoad:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-1.552, 0, 0.002)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_y62wd"]
+_data = {
+&"FuelLoad": SubResource("Animation_yc65k"),
+&"RESET": SubResource("Animation_33vyi")
+}
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yc65k"]
+albedo_texture = ExtResource("6_jh6kt")
+
+[sub_resource type="Curve" id="Curve_33vyi"]
+_data = [Vector2(0, 0.876405), 0.0, 0.0, 0, 0, Vector2(0.0651163, 1), 0.0, 0.0, 0, 0, Vector2(0.553488, 1), 0.0, 0.0, 0, 0, Vector2(0.897674, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.853933), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y62wd"]
+albedo_color = Color(0.34989, 0.159557, 0.00142558, 1)
+
+[sub_resource type="TubeTrailMesh" id="TubeTrailMesh_eo0lw"]
+material = SubResource("StandardMaterial3D_y62wd")
+radial_steps = 6
+curve = SubResource("Curve_33vyi")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_r2bax"]
+load_path = "res://.godot/imported/grass.png-6555cfae5e1790b8b11c6459dbcc69a3.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t5ayy"]
+albedo_texture = SubResource("CompressedTexture2D_r2bax")
+uv1_scale = Vector3(0.08, 0.08, 0.08)
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_33vyi"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_y62wd"]
+data = PackedVector3Array(1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0, -1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_r2bax"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_7mjhk"]
+data = PackedVector3Array(0.5, -0.5, 0, -0.5, -0.5, 0, 0.5, 0.5, 0, -0.5, -0.5, 0, -0.5, 0.5, 0, 0.5, 0.5, 0)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_yc65k"]
+data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
+
+[node name="HarvestWood" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_i42k1")
+
+[node name="Floor" type="MeshInstance3D" parent="."]
+transform = Transform3D(500, 0, 0, 0, 500, 0, 0, 0, 500, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_83ijf")
+mesh = SubResource("PlaneMesh_dwunf")
+
+[node name="StaticFloor3D" type="StaticBody3D" parent="Floor"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticFloor3D"]
+shape = SubResource("ConcavePolygonShape3D_100vi")
+
+[node name="Player" type="CharacterBody3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 20.5, 0)
+script = ExtResource("5_3jdc6")
+
+[node name="WoodLog" type="MeshInstance3D" parent="Player"]
+unique_name_in_owner = true
+transform = Transform3D(-4.18766e-08, 1.61997, 4.8491e-08, 0.554672, 1.22304e-07, 4.8491e-08, 4.8491e-08, 1.41622e-07, -0.554672, 0, 1.21, -0.42)
+visible = false
+material_override = SubResource("StandardMaterial3D_7sg2u")
+mesh = SubResource("TubeTrailMesh_pc53x")
+skeleton = NodePath("../Head/Camera3D")
+
+[node name="Head" type="Node3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Player/Head"]
+fov = 90.0
+
+[node name="PlayerRayCast3D" type="RayCast3D" parent="Player/Head"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+target_position = Vector3(0, 3, 0)
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_cejma")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_fefcm")
+
+[node name="ColorRect" type="ColorRect" parent="Player"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -3.0
+offset_top = -3.0
+offset_right = 3.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("7_n86ka")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("8_fakw2")
+
+[node name="GUI" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.4185, 1.4, -1.74119)
+visible = false
+script = ExtResource("9_w6b45")
+
+[node name="Sprite3D" type="Sprite3D" parent="GUI"]
+alpha_cut = 1
+texture = ExtResource("10_t6yhj")
+
+[node name="leftEye" type="StaticBody3D" parent="GUI"]
+transform = Transform3D(0.185825, -9.75947e-10, 1.33227e-15, -2.22045e-16, -3.58077e-09, -0.185825, 8.12269e-09, 0.0223271, -2.98023e-08, -0.201738, -0.00634909, -0.000348806)
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("11_4xddr")
+metadata/LeftClick = true
+
+[node name="LeftEyeCollission" type="CollisionShape3D" parent="GUI/leftEye"]
+transform = Transform3D(1, 5.76578e-15, 0, -1.58381e-15, 1, -1.15629e-21, 0, -1.22326e-21, 1, 0, 1.90735e-06, -3.8147e-06)
+shape = SubResource("BoxShape3D_i42k1")
+debug_color = Color(0.747868, 0, 0.245539, 1)
+
+[node name="rightEye" type="StaticBody3D" parent="GUI"]
+transform = Transform3D(0.185825, -1.30707e-09, 1.55431e-15, -2.22045e-16, -3.59676e-09, -0.185825, 8.12269e-09, 0.0299023, -2.23517e-08, 0.197529, -0.00634909, -0.00109029)
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("11_4xddr")
+metadata/LeftClick = true
+
+[node name="RightEyeCollission" type="CollisionShape3D" parent="GUI/rightEye"]
+transform = Transform3D(1, 5.76578e-15, 0, -1.58381e-15, 1, -1.15629e-21, 0, -1.22326e-21, 1, 0, 1.90735e-06, -3.8147e-06)
+shape = SubResource("BoxShape3D_i42k1")
+debug_color = Color(0.747868, 0, 0.245539, 1)
+
+[node name="Campfire" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 6)
+
+[node name="Logs" type="Node3D" parent="Campfire"]
+
+[node name="woodLog" parent="Campfire/Logs" instance=ExtResource("12_21mcs")]
+transform = Transform3D(0.48594, 0, 0, 0, 0.224015, 0.707107, 0, -0.224015, 0.707107, 0, 0, -0.7)
+skeleton = NodePath("../../..")
+
+[node name="woodLog2" parent="Campfire/Logs" instance=ExtResource("12_21mcs")]
+transform = Transform3D(-0.48594, -1.9584e-08, 6.18173e-08, 0, 0.224015, 0.707107, -4.24822e-08, 0.224015, -0.707107, 0, 0, 0.7)
+skeleton = NodePath("../../..")
+
+[node name="woodLog3" parent="Campfire/Logs" instance=ExtResource("12_21mcs")]
+transform = Transform3D(-2.12411e-08, 0.224015, -0.707107, -3.79821e-15, 0.224015, 0.707107, 0.48594, 4.9849e-08, 9.55319e-08, 0.7, 0, 4.76837e-07)
+skeleton = NodePath("../../..")
+
+[node name="woodLog4" parent="Campfire/Logs" instance=ExtResource("12_21mcs")]
+transform = Transform3D(-2.12411e-08, -0.224015, 0.707107, -5.06428e-15, 0.224015, 0.707107, -0.48594, -3.0265e-08, -1.57349e-07, -0.7, 0, 4.76837e-07)
+skeleton = NodePath("../../..")
+
+[node name="woodLog5" parent="Campfire/Logs" instance=ExtResource("12_21mcs")]
+transform = Transform3D(-0.343612, -0.158402, 0.5, -4.40858e-15, 0.224015, 0.707107, -0.343611, 0.158402, -0.500001, -0.5, 0, 0.5)
+skeleton = NodePath("../../..")
+
+[node name="woodLog6" parent="Campfire/Logs" instance=ExtResource("12_21mcs")]
+transform = Transform3D(0.343611, 0.158402, -0.5, 1.02404e-08, 0.224015, 0.707107, 0.343611, -0.158402, 0.5, 0.5, 0, -0.5)
+skeleton = NodePath("../../..")
+
+[node name="woodLog7" parent="Campfire/Logs" instance=ExtResource("12_21mcs")]
+transform = Transform3D(-0.343612, 0.158402, -0.5, 1.02404e-08, 0.224015, 0.707107, 0.343611, 0.158402, -0.5, 0.5, 0, 0.5)
+skeleton = NodePath("../../..")
+
+[node name="woodLog8" parent="Campfire/Logs" instance=ExtResource("12_21mcs")]
+transform = Transform3D(0.343612, -0.158402, 0.5, 2.04808e-08, 0.224015, 0.707107, -0.343611, -0.158402, 0.5, -0.5, 0, -0.5)
+skeleton = NodePath("../../..")
+
+[node name="FireSmoke" type="GPUParticles3D" parent="Campfire"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.916034, 0)
+amount = 256
+lifetime = 8.0
+process_material = SubResource("ParticleProcessMaterial_cecup")
+draw_pass_1 = SubResource("SphereMesh_r2bax")
+
+[node name="FireSmoke2" type="GPUParticles3D" parent="Campfire"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.916034, 0)
+amount = 128
+lifetime = 4.0
+process_material = SubResource("ParticleProcessMaterial_cecup")
+draw_pass_1 = SubResource("SphereMesh_cecup")
+
+[node name="CampfireStaticBody3D" type="StaticBody3D" parent="Campfire"]
+unique_name_in_owner = true
+process_mode = 4
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("13_6cp6b")
+metadata/LeftClick = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Campfire/CampfireStaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_s1ey0")
+
+[node name="FuelBar" type="Node3D" parent="Campfire"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.70154, 1, -2.4159)
+script = ExtResource("14_hspbi")
+
+[node name="FuelBack" type="MeshInstance3D" parent="Campfire/FuelBar"]
+transform = Transform3D(-1.6176, 0, -2.62309e-08, 0, 0.437527, 0, 1.41415e-07, 0, -0.300046, 0, 0, 0)
+mesh = SubResource("QuadMesh_7sg2u")
+skeleton = NodePath("../..")
+
+[node name="FuelFront" type="MeshInstance3D" parent="Campfire/FuelBar"]
+transform = Transform3D(-1.55178, 0, -2.11309e-08, 0, 0.385973, 0, 1.35661e-07, 0, -0.241709, 0, 0, -0.001)
+mesh = SubResource("QuadMesh_y62wd")
+skeleton = NodePath("../..")
+
+[node name="FuelLoad" type="MeshInstance3D" parent="Campfire/FuelBar"]
+transform = Transform3D(0, 0, -3.6541e-08, 0, 0.386, 0, 0, 0, -0.242, -1.552, 0, 0.002)
+mesh = SubResource("QuadMesh_ntjly")
+skeleton = NodePath("../..")
+
+[node name="CampfireProgressBar" type="AnimationPlayer" parent="Campfire/FuelBar"]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_y62wd")
+}
+
+[node name="WoodSpawner" type="Node3D" parent="." node_paths=PackedStringArray("player")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+script = ExtResource("15_cwkjc")
+player = NodePath("../Player")
+step = 1
+
+[node name="WoodLog" type="MeshInstance3D" parent="WoodSpawner" node_paths=PackedStringArray("player", "spawner") instance=ExtResource("16_bsemo")]
+transform = Transform3D(0.503773, -0.677893, 1.01458e-08, 0, -7.08111e-08, -0.554672, 0.232108, 1.47131, -2.20206e-08, -10, 0, 7)
+material_override = SubResource("StandardMaterial3D_yc65k")
+mesh = SubResource("TubeTrailMesh_eo0lw")
+script = ExtResource("17_ptukg")
+player = NodePath("../../Player")
+spawner = NodePath("..")
+
+[node name="WoodLog2" type="MeshInstance3D" parent="WoodSpawner" node_paths=PackedStringArray("player", "spawner") instance=ExtResource("16_bsemo")]
+transform = Transform3D(0.099206, 1.59385, -2.38545e-08, 0, -7.08111e-08, -0.554672, -0.545728, 0.28974, -4.33643e-09, 3, 0, 6)
+material_override = SubResource("StandardMaterial3D_yc65k")
+mesh = SubResource("TubeTrailMesh_eo0lw")
+script = ExtResource("17_ptukg")
+player = NodePath("../../Player")
+spawner = NodePath("..")
+
+[node name="WoodLog3" type="MeshInstance3D" parent="WoodSpawner" node_paths=PackedStringArray("player", "spawner") instance=ExtResource("16_bsemo")]
+transform = Transform3D(0.475877, -0.832253, 1.2456e-08, 0, -7.08111e-08, -0.554672, 0.284961, 1.38984, -2.08012e-08, -9, 0, -8)
+material_override = SubResource("StandardMaterial3D_yc65k")
+mesh = SubResource("TubeTrailMesh_eo0lw")
+script = ExtResource("17_ptukg")
+player = NodePath("../../Player")
+spawner = NodePath("..")
+
+[node name="WoodLog4" type="MeshInstance3D" parent="WoodSpawner" node_paths=PackedStringArray("player", "spawner") instance=ExtResource("16_bsemo")]
+transform = Transform3D(-0.173483, 1.5387, -2.30291e-08, 0, -7.08111e-08, -0.554672, -0.526844, -0.506673, 7.58319e-09, -2, 0, -10)
+material_override = SubResource("StandardMaterial3D_yc65k")
+mesh = SubResource("TubeTrailMesh_eo0lw")
+script = ExtResource("17_ptukg")
+player = NodePath("../../Player")
+spawner = NodePath("..")
+
+[node name="WoodLog5" type="MeshInstance3D" parent="WoodSpawner" node_paths=PackedStringArray("player", "spawner") instance=ExtResource("16_bsemo")]
+transform = Transform3D(-0.527726, 0.49878, -7.46505e-09, 0, -7.08111e-08, -0.554672, -0.170781, -1.54127, 2.30676e-08, 9, 0, 9)
+material_override = SubResource("StandardMaterial3D_yc65k")
+mesh = SubResource("TubeTrailMesh_eo0lw")
+script = ExtResource("17_ptukg")
+player = NodePath("../../Player")
+spawner = NodePath("..")
+
+[node name="WoodLog6" type="MeshInstance3D" parent="WoodSpawner" node_paths=PackedStringArray("player", "spawner") instance=ExtResource("16_bsemo")]
+transform = Transform3D(0.467393, -0.8723, 1.30554e-08, 0, -7.08111e-08, -0.554672, 0.298673, 1.36506, -2.04304e-08, -4, 0, 7)
+material_override = SubResource("StandardMaterial3D_yc65k")
+mesh = SubResource("TubeTrailMesh_eo0lw")
+script = ExtResource("17_ptukg")
+player = NodePath("../../Player")
+spawner = NodePath("..")
+
+[node name="WoodLog7" type="MeshInstance3D" parent="WoodSpawner" node_paths=PackedStringArray("player", "spawner") instance=ExtResource("16_bsemo")]
+transform = Transform3D(-0.525947, -0.514559, 7.70121e-09, 0, -7.08111e-08, -0.554672, 0.176183, -1.53608, 2.29899e-08, -7, 0, -1)
+material_override = SubResource("StandardMaterial3D_yc65k")
+mesh = SubResource("TubeTrailMesh_eo0lw")
+script = ExtResource("17_ptukg")
+player = NodePath("../../Player")
+spawner = NodePath("..")
+
+[node name="WoodLog8" type="MeshInstance3D" parent="WoodSpawner" node_paths=PackedStringArray("player", "spawner") instance=ExtResource("16_bsemo")]
+transform = Transform3D(-0.548801, 0.235071, -3.51821e-09, 0, -7.08111e-08, -0.554672, -0.0804874, -1.60282, 2.39889e-08, -1, 0, 10)
+material_override = SubResource("StandardMaterial3D_yc65k")
+mesh = SubResource("TubeTrailMesh_eo0lw")
+script = ExtResource("17_ptukg")
+player = NodePath("../../Player")
+spawner = NodePath("..")
+
+[node name="WoodLog9" type="MeshInstance3D" parent="WoodSpawner" node_paths=PackedStringArray("player", "spawner") instance=ExtResource("16_bsemo")]
+transform = Transform3D(0.539387, 0.377677, -5.65255e-09, 0, -7.08111e-08, -0.554672, -0.129315, 1.57533, -2.35774e-08, -7, 0, -7)
+material_override = SubResource("StandardMaterial3D_yc65k")
+mesh = SubResource("TubeTrailMesh_eo0lw")
+script = ExtResource("17_ptukg")
+player = NodePath("../../Player")
+spawner = NodePath("..")
+
+[node name="WoodLog10" type="MeshInstance3D" parent="WoodSpawner" node_paths=PackedStringArray("player", "spawner") instance=ExtResource("16_bsemo")]
+transform = Transform3D(-0.45719, 0.917261, -1.37283e-08, 0, -7.08111e-08, -0.554672, -0.314067, -1.33527, 1.99844e-08, -9, 0, -1)
+material_override = SubResource("StandardMaterial3D_yc65k")
+mesh = SubResource("TubeTrailMesh_eo0lw")
+script = ExtResource("17_ptukg")
+player = NodePath("../../Player")
+spawner = NodePath("..")
+
+[node name="WoodLog11" type="MeshInstance3D" parent="WoodSpawner" node_paths=PackedStringArray("player", "spawner") instance=ExtResource("16_bsemo")]
+transform = Transform3D(-0.350291, 1.25605, -1.87988e-08, 0, -7.08111e-08, -0.554672, -0.430067, -1.02306, 1.53117e-08, 5, 0, -3)
+material_override = SubResource("StandardMaterial3D_yc65k")
+mesh = SubResource("TubeTrailMesh_eo0lw")
+script = ExtResource("17_ptukg")
+player = NodePath("../../Player")
+spawner = NodePath("..")
+
+[node name="WoodLog12" type="MeshInstance3D" parent="WoodSpawner" node_paths=PackedStringArray("player", "spawner") instance=ExtResource("16_bsemo")]
+transform = Transform3D(-0.263335, 1.42576, -2.13389e-08, 0, -7.08111e-08, -0.554672, -0.488176, -0.769093, 1.15107e-08, -4, 0, -10)
+material_override = SubResource("StandardMaterial3D_yc65k")
+mesh = SubResource("TubeTrailMesh_eo0lw")
+script = ExtResource("17_ptukg")
+player = NodePath("../../Player")
+spawner = NodePath("..")
+
+[node name="WoodLog13" type="MeshInstance3D" parent="WoodSpawner" node_paths=PackedStringArray("player", "spawner") instance=ExtResource("16_bsemo")]
+transform = Transform3D(-0.301142, -1.36043, 2.0361e-08, 0, -7.08111e-08, -0.554672, 0.465805, -0.879513, 1.31633e-08, 7, 0, 6)
+material_override = SubResource("StandardMaterial3D_yc65k")
+mesh = SubResource("TubeTrailMesh_eo0lw")
+script = ExtResource("17_ptukg")
+player = NodePath("../../Player")
+spawner = NodePath("..")
+
+[node name="WoodLog14" type="MeshInstance3D" parent="WoodSpawner" node_paths=PackedStringArray("player", "spawner") instance=ExtResource("16_bsemo")]
+transform = Transform3D(0.540076, -0.369186, 5.52547e-09, 0, -7.08111e-08, -0.554672, 0.126408, 1.57734, -2.36075e-08, -5, 0, 7)
+material_override = SubResource("StandardMaterial3D_yc65k")
+mesh = SubResource("TubeTrailMesh_eo0lw")
+script = ExtResource("17_ptukg")
+player = NodePath("../../Player")
+spawner = NodePath("..")
+
+[node name="WoodLog15" type="MeshInstance3D" parent="WoodSpawner" node_paths=PackedStringArray("player", "spawner") instance=ExtResource("16_bsemo")]
+transform = Transform3D(0.0419985, 1.61532, -2.41759e-08, 0, -7.08111e-08, -0.554672, -0.55308, 0.12266, -1.83581e-09, 0, 0, -1)
+material_override = SubResource("StandardMaterial3D_yc65k")
+mesh = SubResource("TubeTrailMesh_eo0lw")
+script = ExtResource("17_ptukg")
+player = NodePath("../../Player")
+spawner = NodePath("..")
+
+[node name="WoodLog16" type="MeshInstance3D" parent="WoodSpawner" node_paths=PackedStringArray("player", "spawner") instance=ExtResource("16_bsemo")]
+transform = Transform3D(-0.145938, 1.56289, -2.33912e-08, 0, -7.08111e-08, -0.554672, -0.535129, -0.426226, 6.37916e-09, 10, 0, -6)
+material_override = SubResource("StandardMaterial3D_yc65k")
+mesh = SubResource("TubeTrailMesh_eo0lw")
+script = ExtResource("17_ptukg")
+player = NodePath("../../Player")
+spawner = NodePath("..")
+
+[node name="WoodLog17" type="MeshInstance3D" parent="WoodSpawner" node_paths=PackedStringArray("player", "spawner") instance=ExtResource("16_bsemo")]
+transform = Transform3D(0.507356, 0.654701, -9.79866e-09, 0, -7.08111e-08, -0.554672, -0.224167, 1.48178, -2.21772e-08, -8, 0, 1)
+material_override = SubResource("StandardMaterial3D_yc65k")
+mesh = SubResource("TubeTrailMesh_eo0lw")
+script = ExtResource("17_ptukg")
+player = NodePath("../../Player")
+spawner = NodePath("..")
+
+[node name="WoodLog18" type="MeshInstance3D" parent="WoodSpawner" node_paths=PackedStringArray("player", "spawner") instance=ExtResource("16_bsemo")]
+transform = Transform3D(0.331163, 1.29955, -1.94499e-08, 0, -7.08111e-08, -0.554672, -0.444963, 0.967193, -1.44756e-08, 3, 0, -8)
+material_override = SubResource("StandardMaterial3D_yc65k")
+mesh = SubResource("TubeTrailMesh_eo0lw")
+script = ExtResource("17_ptukg")
+player = NodePath("../../Player")
+spawner = NodePath("..")
+
+[node name="WoodLog19" type="MeshInstance3D" parent="WoodSpawner" node_paths=PackedStringArray("player", "spawner") instance=ExtResource("16_bsemo")]
+transform = Transform3D(0.260143, -1.43075, 2.14135e-08, 0, -7.08111e-08, -0.554672, 0.489885, 0.75977, -1.13712e-08, -8, 0, 4)
+material_override = SubResource("StandardMaterial3D_yc65k")
+mesh = SubResource("TubeTrailMesh_eo0lw")
+script = ExtResource("17_ptukg")
+player = NodePath("../../Player")
+spawner = NodePath("..")
+
+[node name="WoodLog20" type="MeshInstance3D" parent="WoodSpawner" node_paths=PackedStringArray("player", "spawner") instance=ExtResource("16_bsemo")]
+transform = Transform3D(0.211649, -1.4974, 2.2411e-08, 0, -7.08111e-08, -0.554672, 0.512704, 0.618141, -9.25148e-09, -5, 0, 4)
+material_override = SubResource("StandardMaterial3D_yc65k")
+mesh = SubResource("TubeTrailMesh_eo0lw")
+script = ExtResource("17_ptukg")
+player = NodePath("../../Player")
+spawner = NodePath("..")
+
+[node name="WoodLog21" type="MeshInstance3D" parent="WoodSpawner" node_paths=PackedStringArray("player", "spawner") instance=ExtResource("16_bsemo")]
+transform = Transform3D(0.506456, 0.660619, -9.88724e-09, 0, -7.08111e-08, -0.554672, -0.226194, 1.47915, -2.21379e-08, -6, 0, 0)
+material_override = SubResource("StandardMaterial3D_yc65k")
+mesh = SubResource("TubeTrailMesh_eo0lw")
+script = ExtResource("17_ptukg")
+player = NodePath("../../Player")
+spawner = NodePath("..")
+
+[node name="WoodLog22" type="MeshInstance3D" parent="WoodSpawner" node_paths=PackedStringArray("player", "spawner") instance=ExtResource("16_bsemo")]
+transform = Transform3D(0.513465, -0.612733, 9.17054e-09, 0, -7.08111e-08, -0.554672, 0.209798, 1.49962, -2.24443e-08, 8, 0, 10)
+material_override = SubResource("StandardMaterial3D_yc65k")
+mesh = SubResource("TubeTrailMesh_eo0lw")
+script = ExtResource("17_ptukg")
+player = NodePath("../../Player")
+spawner = NodePath("..")
+
+[node name="WoodLog23" type="MeshInstance3D" parent="WoodSpawner" node_paths=PackedStringArray("player", "spawner") instance=ExtResource("16_bsemo")]
+transform = Transform3D(0.265281, -1.42268, 2.12927e-08, 0, -7.08111e-08, -0.554672, 0.487121, 0.774779, -1.15958e-08, -5, 0, 10)
+material_override = SubResource("StandardMaterial3D_yc65k")
+mesh = SubResource("TubeTrailMesh_eo0lw")
+script = ExtResource("17_ptukg")
+player = NodePath("../../Player")
+spawner = NodePath("..")
+
+[node name="WoodLog24" type="MeshInstance3D" parent="WoodSpawner" node_paths=PackedStringArray("player", "spawner") instance=ExtResource("16_bsemo")]
+transform = Transform3D(-0.516697, -0.589099, 8.81682e-09, 0, -7.08111e-08, -0.554672, 0.201705, -1.50906, 2.25855e-08, -3, 0, 6)
+material_override = SubResource("StandardMaterial3D_yc65k")
+mesh = SubResource("TubeTrailMesh_eo0lw")
+script = ExtResource("17_ptukg")
+player = NodePath("../../Player")
+spawner = NodePath("..")
+
+[node name="WoodLog25" type="MeshInstance3D" parent="WoodSpawner" node_paths=PackedStringArray("player", "spawner") instance=ExtResource("16_bsemo")]
+transform = Transform3D(0.13558, -1.57083, 2.351e-08, 0, -7.08111e-08, -0.554672, 0.537847, 0.395974, -5.9264e-09, 6, 0, 6)
+material_override = SubResource("StandardMaterial3D_yc65k")
+mesh = SubResource("TubeTrailMesh_eo0lw")
+script = ExtResource("17_ptukg")
+player = NodePath("../../Player")
+spawner = NodePath("..")
+
+[node name="WoodLog26" type="MeshInstance3D" parent="WoodSpawner" node_paths=PackedStringArray("player", "spawner") instance=ExtResource("16_bsemo")]
+transform = Transform3D(0.316913, 1.32952, -1.98984e-08, 0, -7.08111e-08, -0.554672, -0.455222, 0.925572, -1.38527e-08, 7, 0, 3)
+material_override = SubResource("StandardMaterial3D_yc65k")
+mesh = SubResource("TubeTrailMesh_eo0lw")
+script = ExtResource("17_ptukg")
+player = NodePath("../../Player")
+spawner = NodePath("..")
+
+[node name="WoodLog27" type="MeshInstance3D" parent="WoodSpawner" node_paths=PackedStringArray("player", "spawner") instance=ExtResource("16_bsemo")]
+transform = Transform3D(-0.164224, 1.54734, -2.31584e-08, 0, -7.08111e-08, -0.554672, -0.529803, -0.479632, 7.17847e-09, -10, 0, -5)
+material_override = SubResource("StandardMaterial3D_yc65k")
+mesh = SubResource("TubeTrailMesh_eo0lw")
+script = ExtResource("17_ptukg")
+player = NodePath("../../Player")
+spawner = NodePath("..")
+
+[node name="WoodLog28" type="MeshInstance3D" parent="WoodSpawner" node_paths=PackedStringArray("player", "spawner") instance=ExtResource("16_bsemo")]
+transform = Transform3D(0.0752147, 1.60501, -2.40215e-08, 0, -7.08111e-08, -0.554672, -0.549549, 0.219671, -3.28774e-09, 3, 0, 1)
+material_override = SubResource("StandardMaterial3D_yc65k")
+mesh = SubResource("TubeTrailMesh_eo0lw")
+script = ExtResource("17_ptukg")
+player = NodePath("../../Player")
+spawner = NodePath("..")
+
+[node name="WoodLog29" type="MeshInstance3D" parent="WoodSpawner" node_paths=PackedStringArray("player", "spawner") instance=ExtResource("16_bsemo")]
+transform = Transform3D(-0.0974303, -1.59478, 2.38685e-08, 0, -7.08111e-08, -0.554672, 0.546048, -0.284554, 4.25881e-09, -1, 0, 2)
+material_override = SubResource("StandardMaterial3D_yc65k")
+mesh = SubResource("TubeTrailMesh_eo0lw")
+script = ExtResource("17_ptukg")
+player = NodePath("../../Player")
+spawner = NodePath("..")
+
+[node name="WoodLog30" type="MeshInstance3D" parent="WoodSpawner" node_paths=PackedStringArray("player", "spawner") instance=ExtResource("16_bsemo")]
+transform = Transform3D(-0.406391, -1.10253, 1.65011e-08, 0, -7.08111e-08, -0.554672, 0.377502, -1.1869, 1.77639e-08, -1, 0, -2)
+material_override = SubResource("StandardMaterial3D_yc65k")
+mesh = SubResource("TubeTrailMesh_eo0lw")
+script = ExtResource("17_ptukg")
+player = NodePath("../../Player")
+spawner = NodePath("..")
+
+[node name="WoodLog31" type="MeshInstance3D" parent="WoodSpawner" node_paths=PackedStringArray("player", "spawner") instance=ExtResource("16_bsemo")]
+transform = Transform3D(-0.387939, -1.15784, 1.73289e-08, 0, -7.08111e-08, -0.554672, 0.396439, -1.13301, 1.69574e-08, 1, 0, 6)
+material_override = SubResource("StandardMaterial3D_yc65k")
+mesh = SubResource("TubeTrailMesh_eo0lw")
+script = ExtResource("17_ptukg")
+player = NodePath("../../Player")
+spawner = NodePath("..")
+
+[node name="WoodLog32" type="MeshInstance3D" parent="WoodSpawner" node_paths=PackedStringArray("player", "spawner") instance=ExtResource("16_bsemo")]
+transform = Transform3D(-0.501455, -0.692396, 1.03628e-08, 0, -7.08111e-08, -0.554672, 0.237074, -1.46454, 2.19193e-08, -4, 0, -1)
+material_override = SubResource("StandardMaterial3D_yc65k")
+mesh = SubResource("TubeTrailMesh_eo0lw")
+script = ExtResource("17_ptukg")
+player = NodePath("../../Player")
+spawner = NodePath("..")
+
+[node name="WoodLog33" type="MeshInstance3D" parent="WoodSpawner" node_paths=PackedStringArray("player", "spawner") instance=ExtResource("16_bsemo")]
+transform = Transform3D(0.200094, 1.51089, -2.26129e-08, 0, -7.08111e-08, -0.554672, -0.517323, 0.584394, -8.7464e-09, 6, 0, -9)
+material_override = SubResource("StandardMaterial3D_yc65k")
+mesh = SubResource("TubeTrailMesh_eo0lw")
+script = ExtResource("17_ptukg")
+player = NodePath("../../Player")
+spawner = NodePath("..")
+
+[node name="WoodLog34" type="MeshInstance3D" parent="WoodSpawner" node_paths=PackedStringArray("player", "spawner") instance=ExtResource("16_bsemo")]
+transform = Transform3D(-0.333231, 1.29504, -1.93823e-08, 0, -7.08111e-08, -0.554672, -0.443416, -0.973232, 1.4566e-08, -9, 0, -5)
+material_override = SubResource("StandardMaterial3D_yc65k")
+mesh = SubResource("TubeTrailMesh_eo0lw")
+script = ExtResource("17_ptukg")
+player = NodePath("../../Player")
+spawner = NodePath("..")
+
+[node name="WoodLog35" type="MeshInstance3D" parent="WoodSpawner" node_paths=PackedStringArray("player", "spawner") instance=ExtResource("16_bsemo")]
+transform = Transform3D(-0.513708, 0.610994, -9.14452e-09, 0, -7.08111e-08, -0.554672, -0.209202, -1.50033, 2.24549e-08, 9, 0, 1)
+material_override = SubResource("StandardMaterial3D_yc65k")
+mesh = SubResource("TubeTrailMesh_eo0lw")
+script = ExtResource("17_ptukg")
+player = NodePath("../../Player")
+spawner = NodePath("..")
+
+[node name="WoodLog36" type="MeshInstance3D" parent="WoodSpawner" node_paths=PackedStringArray("player", "spawner") instance=ExtResource("16_bsemo")]
+transform = Transform3D(0.254633, 1.43918, -2.15397e-08, 0, -7.08111e-08, -0.554672, -0.492771, 0.74368, -1.11304e-08, 8, 0, -10)
+material_override = SubResource("StandardMaterial3D_yc65k")
+mesh = SubResource("TubeTrailMesh_eo0lw")
+script = ExtResource("17_ptukg")
+player = NodePath("../../Player")
+spawner = NodePath("..")
+
+[node name="WoodLog37" type="MeshInstance3D" parent="WoodSpawner" node_paths=PackedStringArray("player", "spawner") instance=ExtResource("16_bsemo")]
+transform = Transform3D(0.0864084, 1.60019, -2.39495e-08, 0, -7.08111e-08, -0.554672, -0.5479, 0.252364, -3.77703e-09, -6, 0, 1)
+material_override = SubResource("StandardMaterial3D_yc65k")
+mesh = SubResource("TubeTrailMesh_eo0lw")
+script = ExtResource("17_ptukg")
+player = NodePath("../../Player")
+spawner = NodePath("..")
+
+[node name="WoodLog38" type="MeshInstance3D" parent="WoodSpawner" node_paths=PackedStringArray("player", "spawner") instance=ExtResource("16_bsemo")]
+transform = Transform3D(-0.209042, -1.50052, 2.24577e-08, 0, -7.08111e-08, -0.554672, 0.513773, -0.610526, 9.13752e-09, 9, 0, -6)
+material_override = SubResource("StandardMaterial3D_yc65k")
+mesh = SubResource("TubeTrailMesh_eo0lw")
+script = ExtResource("17_ptukg")
+player = NodePath("../../Player")
+spawner = NodePath("..")
+
+[node name="WoodLog39" type="MeshInstance3D" parent="WoodSpawner" node_paths=PackedStringArray("player", "spawner") instance=ExtResource("16_bsemo")]
+transform = Transform3D(-0.434924, 1.00539, -1.50473e-08, 0, -7.08111e-08, -0.554672, -0.344242, -1.27023, 1.90111e-08, 8, 0, 10)
+material_override = SubResource("StandardMaterial3D_yc65k")
+mesh = SubResource("TubeTrailMesh_eo0lw")
+script = ExtResource("17_ptukg")
+player = NodePath("../../Player")
+spawner = NodePath("..")
+
+[node name="WoodLog40" type="MeshInstance3D" parent="WoodSpawner" node_paths=PackedStringArray("player", "spawner") instance=ExtResource("16_bsemo")]
+transform = Transform3D(-0.390723, 1.14983, -1.7209e-08, 0, -7.08111e-08, -0.554672, -0.393697, -1.14114, 1.7079e-08, -10, 0, -5)
+material_override = SubResource("StandardMaterial3D_yc65k")
+mesh = SubResource("TubeTrailMesh_eo0lw")
+script = ExtResource("17_ptukg")
+player = NodePath("../../Player")
+spawner = NodePath("..")
+
+[node name="WoodLog41" type="MeshInstance3D" parent="WoodSpawner" node_paths=PackedStringArray("player", "spawner") instance=ExtResource("16_bsemo")]
+transform = Transform3D(-0.51805, -0.578873, 8.66377e-09, 0, -7.08111e-08, -0.554672, 0.198204, -1.51301, 2.26447e-08, -10, 0, 4)
+material_override = SubResource("StandardMaterial3D_yc65k")
+mesh = SubResource("TubeTrailMesh_eo0lw")
+script = ExtResource("17_ptukg")
+player = NodePath("../../Player")
+spawner = NodePath("..")
+
+[node name="WoodLog42" type="MeshInstance3D" parent="WoodSpawner" node_paths=PackedStringArray("player", "spawner") instance=ExtResource("16_bsemo")]
+transform = Transform3D(0.534088, 0.43722, -6.54371e-09, 0, -7.08111e-08, -0.554672, -0.149703, 1.55985, -2.33457e-08, 0, 0, -4)
+material_override = SubResource("StandardMaterial3D_yc65k")
+mesh = SubResource("TubeTrailMesh_eo0lw")
+script = ExtResource("17_ptukg")
+player = NodePath("../../Player")
+spawner = NodePath("..")
+
+[node name="WoodLog43" type="MeshInstance3D" parent="WoodSpawner" node_paths=PackedStringArray("player", "spawner") instance=ExtResource("16_bsemo")]
+transform = Transform3D(0.541502, -0.35091, 5.25194e-09, 0, -7.08111e-08, -0.554672, 0.12015, 1.58151, -2.36698e-08, -3, 0, -10)
+material_override = SubResource("StandardMaterial3D_yc65k")
+mesh = SubResource("TubeTrailMesh_eo0lw")
+script = ExtResource("17_ptukg")
+player = NodePath("../../Player")
+spawner = NodePath("..")
+
+[node name="WoodLog44" type="MeshInstance3D" parent="WoodSpawner" node_paths=PackedStringArray("player", "spawner") instance=ExtResource("16_bsemo")]
+transform = Transform3D(0.117926, -1.58293, 2.36912e-08, 0, -7.08111e-08, -0.554672, 0.541991, 0.344413, -5.1547e-09, 8, 0, -7)
+material_override = SubResource("StandardMaterial3D_yc65k")
+mesh = SubResource("TubeTrailMesh_eo0lw")
+script = ExtResource("17_ptukg")
+player = NodePath("../../Player")
+spawner = NodePath("..")
+
+[node name="WoodLog45" type="MeshInstance3D" parent="WoodSpawner" node_paths=PackedStringArray("player", "spawner") instance=ExtResource("16_bsemo")]
+transform = Transform3D(-0.460594, -0.902619, 1.35092e-08, 0, -7.08111e-08, -0.554672, 0.309054, -1.34521, 2.01332e-08, -2, 0, -10)
+material_override = SubResource("StandardMaterial3D_yc65k")
+mesh = SubResource("TubeTrailMesh_eo0lw")
+script = ExtResource("17_ptukg")
+player = NodePath("../../Player")
+spawner = NodePath("..")
+
+[node name="WoodLog46" type="MeshInstance3D" parent="WoodSpawner" node_paths=PackedStringArray("player", "spawner") instance=ExtResource("16_bsemo")]
+transform = Transform3D(-0.201285, 1.50954, -2.25927e-08, 0, -7.08111e-08, -0.554672, -0.516861, -0.587872, 8.79846e-09, -2, 0, -7)
+material_override = SubResource("StandardMaterial3D_yc65k")
+mesh = SubResource("TubeTrailMesh_eo0lw")
+script = ExtResource("17_ptukg")
+player = NodePath("../../Player")
+spawner = NodePath("..")
+
+[node name="WoodLog47" type="MeshInstance3D" parent="WoodSpawner" node_paths=PackedStringArray("player", "spawner") instance=ExtResource("16_bsemo")]
+transform = Transform3D(0.348003, -1.26146, 1.88798e-08, 0, -7.08111e-08, -0.554672, 0.43192, 1.01637, -1.52117e-08, -9, 0, -10)
+material_override = SubResource("StandardMaterial3D_yc65k")
+mesh = SubResource("TubeTrailMesh_eo0lw")
+script = ExtResource("17_ptukg")
+player = NodePath("../../Player")
+spawner = NodePath("..")
+
+[node name="WoodLog48" type="MeshInstance3D" parent="WoodSpawner" node_paths=PackedStringArray("player", "spawner") instance=ExtResource("16_bsemo")]
+transform = Transform3D(-0.212042, -1.49692, 2.24039e-08, 0, -7.08111e-08, -0.554672, 0.512542, -0.619289, 9.26867e-09, -8, 0, 4)
+material_override = SubResource("StandardMaterial3D_yc65k")
+mesh = SubResource("TubeTrailMesh_eo0lw")
+script = ExtResource("17_ptukg")
+player = NodePath("../../Player")
+spawner = NodePath("..")
+
+[node name="WoodLog49" type="MeshInstance3D" parent="WoodSpawner" node_paths=PackedStringArray("player", "spawner") instance=ExtResource("16_bsemo")]
+transform = Transform3D(0.151631, -1.55826, 2.33219e-08, 0, -7.08111e-08, -0.554672, 0.533544, 0.442851, -6.62798e-09, 2, 0, -1)
+material_override = SubResource("StandardMaterial3D_yc65k")
+mesh = SubResource("TubeTrailMesh_eo0lw")
+script = ExtResource("17_ptukg")
+player = NodePath("../../Player")
+spawner = NodePath("..")
+
+[node name="WoodLog50" type="MeshInstance3D" parent="WoodSpawner" node_paths=PackedStringArray("player", "spawner") instance=ExtResource("16_bsemo")]
+transform = Transform3D(0.534935, 0.428295, -6.41013e-09, 0, -7.08111e-08, -0.554672, -0.146647, 1.56233, -2.33828e-08, 8, 0, 4)
+material_override = SubResource("StandardMaterial3D_yc65k")
+mesh = SubResource("TubeTrailMesh_eo0lw")
+script = ExtResource("17_ptukg")
+player = NodePath("../../Player")
+spawner = NodePath("..")
+
+[node name="WoodLog51" type="MeshInstance3D" parent="WoodSpawner" node_paths=PackedStringArray("player", "spawner") instance=ExtResource("16_bsemo")]
+transform = Transform3D(-0.0477945, 1.61394, -2.41553e-08, 0, -7.08111e-08, -0.554672, -0.552609, -0.139588, 2.08916e-09, -2, 0, 2)
+material_override = SubResource("StandardMaterial3D_yc65k")
+mesh = SubResource("TubeTrailMesh_eo0lw")
+script = ExtResource("17_ptukg")
+player = NodePath("../../Player")
+spawner = NodePath("..")
+
+[node name="GameOver" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -26.9498, 0)
+
+[node name="GameOverPosition" type="Node3D" parent="GameOver"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="Floor" type="MeshInstance3D" parent="GameOver"]
+transform = Transform3D(21.5212, 0, 0, 0, 21.5212, 0, 0, 0, 21.5212, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_t5ayy")
+mesh = SubResource("PlaneMesh_33vyi")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="GameOver/Floor"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GameOver/Floor/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_y62wd")
+
+[node name="GameOver" type="Label3D" parent="GameOver"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.01868, -5.81108)
+pixel_size = 0.023
+text = "Game Over :c"
+
+[node name="Time" type="Label3D" parent="GameOver"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.01868, -5.81108)
+pixel_size = 0.023
+text = "you time: 0"
+
+[node name="GameOver2" type="Label3D" parent="GameOver"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 3.01868, 4.18892)
+pixel_size = 0.023
+text = "Game Over :c"
+
+[node name="Time2" type="Label3D" parent="GameOver"]
+unique_name_in_owner = true
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 2.01868, 4.18892)
+pixel_size = 0.023
+text = "you time: 0"
+
+[node name="Walls" type="Node3D" parent="GameOver"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="GameOver/Walls"]
+transform = Transform3D(39.5317, 0, 0, 0, 39.5317, 0, 0, 0, 39.5317, 0, -3.92727, -20)
+mesh = SubResource("QuadMesh_r2bax")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="GameOver/Walls/MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GameOver/Walls/MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_7mjhk")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="GameOver/Walls"]
+transform = Transform3D(-1.72798e-06, 0, 39.5317, 0, 39.5317, 0, -39.5317, 0, -1.72798e-06, -17, -3.92727, 0)
+mesh = SubResource("QuadMesh_r2bax")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="GameOver/Walls/MeshInstance3D2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GameOver/Walls/MeshInstance3D2/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_7mjhk")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="GameOver/Walls"]
+transform = Transform3D(-39.5317, 0, -3.45597e-06, 0, 39.5317, 0, 3.45597e-06, 0, -39.5317, -1, -3.92727, 16)
+mesh = SubResource("QuadMesh_r2bax")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="GameOver/Walls/MeshInstance3D3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GameOver/Walls/MeshInstance3D3/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_7mjhk")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="GameOver/Walls"]
+transform = Transform3D(5.18395e-06, 0, -39.5317, 0, 39.5317, 0, 39.5317, 0, 5.18395e-06, 17, -3.92727, -2)
+mesh = SubResource("QuadMesh_r2bax")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="GameOver/Walls/MeshInstance3D4"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GameOver/Walls/MeshInstance3D4/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_7mjhk")
+
+[node name="Exit" type="Node3D" parent="GameOver"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 4.17359)
+
+[node name="Label3D" type="Label3D" parent="GameOver/Exit"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+pixel_size = 0.02
+text = "Exit"
+
+[node name="ExitStatic" type="StaticBody3D" parent="GameOver/Exit"]
+transform = Transform3D(1.32916, 0, 0, 0, 0.613055, 0, 0, 0, 0.259289, 0, 0, 0)
+script = ExtResource("18_k4la6")
+metadata/LeftClick = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GameOver/Exit/ExitStatic"]
+shape = SubResource("ConcavePolygonShape3D_yc65k")
+
+[node name="Exit2" type="Node3D" parent="GameOver"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 1, -5.82641)
+
+[node name="Label3D" type="Label3D" parent="GameOver/Exit2"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+pixel_size = 0.02
+text = "Exit"
+
+[node name="ExitStatic" type="StaticBody3D" parent="GameOver/Exit2"]
+transform = Transform3D(1.32916, 0, 0, 0, 0.613055, 0, 0, 0, 0.259289, 0, 0, 0)
+script = ExtResource("18_k4la6")
+metadata/LeftClick = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GameOver/Exit2/ExitStatic"]
+shape = SubResource("ConcavePolygonShape3D_yc65k")
+
+[node name="Start" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20, 0)
+
+[node name="StartPosition" type="Node3D" parent="Start"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -20, 0)
+
+[node name="Floor" type="MeshInstance3D" parent="Start"]
+transform = Transform3D(21.5212, 0, 0, 0, 21.5212, 0, 0, 0, 21.5212, 0, 0, 0)
+visible = false
+material_override = SubResource("StandardMaterial3D_t5ayy")
+mesh = SubResource("PlaneMesh_33vyi")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Start/Floor"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Start/Floor/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_y62wd")
+
+[node name="Walls" type="Node3D" parent="Start"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 23, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Start/Walls"]
+transform = Transform3D(39.5317, 0, 0, 0, 39.5317, 0, 0, 0, 39.5317, 0, -3.92727, -20)
+visible = false
+mesh = SubResource("QuadMesh_r2bax")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Start/Walls/MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Start/Walls/MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_7mjhk")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Start/Walls"]
+transform = Transform3D(-1.72798e-06, 0, 39.5317, 0, 39.5317, 0, -39.5317, 0, -1.72798e-06, -17, -3.92727, 0)
+visible = false
+mesh = SubResource("QuadMesh_r2bax")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Start/Walls/MeshInstance3D2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Start/Walls/MeshInstance3D2/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_7mjhk")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Start/Walls"]
+transform = Transform3D(-39.5317, 0, -3.45597e-06, 0, 39.5317, 0, 3.45597e-06, 0, -39.5317, -1, -3.92727, 16)
+visible = false
+mesh = SubResource("QuadMesh_r2bax")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Start/Walls/MeshInstance3D3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Start/Walls/MeshInstance3D3/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_7mjhk")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Start/Walls"]
+transform = Transform3D(5.18395e-06, 0, -39.5317, 0, 39.5317, 0, 39.5317, 0, 5.18395e-06, 17, -3.92727, -2)
+visible = false
+mesh = SubResource("QuadMesh_r2bax")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Start/Walls/MeshInstance3D4"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Start/Walls/MeshInstance3D4/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_7mjhk")
+
+[node name="Start" type="Node3D" parent="Start"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 4.17359)
+
+[node name="Label3D" type="Label3D" parent="Start/Start"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+pixel_size = 0.02
+text = "Start"
+
+[node name="StartStatic" type="StaticBody3D" parent="Start/Start"]
+transform = Transform3D(1.32916, 0, 0, 0, 0.613055, 0, 0, 0, 0.259289, 0, 0, 0)
+script = ExtResource("19_py3ox")
+metadata/LeftClick = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Start/Start/StartStatic"]
+shape = SubResource("ConcavePolygonShape3D_yc65k")
+
+[node name="Start2" type="Node3D" parent="Start"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 1, -5.82641)
+
+[node name="Label3D" type="Label3D" parent="Start/Start2"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+pixel_size = 0.02
+text = "Start"
+
+[node name="StartStatic" type="StaticBody3D" parent="Start/Start2"]
+transform = Transform3D(1.32916, 0, 0, 0, 0.613055, 0, 0, 0, 0.259289, 0, 0, 0)
+metadata/LeftClick = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Start/Start2/StartStatic"]
+shape = SubResource("ConcavePolygonShape3D_yc65k")
